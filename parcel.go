@@ -90,8 +90,8 @@ func (s ParcelStore) SetAddress(number int, address string) error {
 	_, err := s.db.Exec(`
 		UPDATE parcel 
 		SET address = ? 
-		WHERE number = ? AND status = 'registered'`,
-		address, number,
+		WHERE number = ? AND status = ?`,
+		address, number, ParcelStatusRegistered,
 	)
 	return err
 }
@@ -99,8 +99,8 @@ func (s ParcelStore) SetAddress(number int, address string) error {
 func (s ParcelStore) Delete(number int) error {
 	_, err := s.db.Exec(`
 		DELETE FROM parcel 
-		WHERE number = ? AND status = 'registered'`,
-		number,
+		WHERE number = ? AND status = ?`,
+		number, ParcelStatusRegistered,
 	)
 	return err
 }
